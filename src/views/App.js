@@ -16,6 +16,7 @@ const styles = (function getStyle() {
   if (__CLIENT__) {
     return require('./App.scss');
   }
+
   return stats.css.modules[path.join(__dirname, './App.scss')];
 })();
 
@@ -44,26 +45,11 @@ class App extends Component {
     const {user} = this.props;
     return (
       <div className={styles.app + ' container'}>
-        <div className="jumbotron">
-          <h1>React Redux Example</h1>
-
-          <p>
-            by <a href="https://twitter.com/erikras" target="_blank">@erikras</a>
-            <a className={styles.github} href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank">
-              <i className="fa fa-github"/> View on Github
-            </a>
-          </p>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=erikras&repo=react-redux-universal-hot-example&type=star&count=true&size=large"
-            frameBorder="0" allowTransparency="true" scrolling="0" width="160px" height="30px"></iframe>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=erikras&amp;repo=react-redux-universal-hot-example&amp;type=fork&amp;count=true&size=large"
-            allowTransparency="true" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
-        </div>
-        <nav className="navbar navbar-default">
+        <nav className="navbar navbar-default" role="navigation">
           <div className="container-fluid">
             <ul className="nav navbar-nav">
               <li><Link to="/">Home</Link></li>
+              <li><Link to="/map">Map</Link></li>
               <li><Link to="/widgets">Widgets</Link></li>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/redirect">Redirect to Home</Link></li>
@@ -73,7 +59,6 @@ class App extends Component {
             {user && <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
           </div>
         </nav>
-        <InfoBar/>
 
         <div className={styles.appContent}>
           {this.props.children}
@@ -86,8 +71,8 @@ class App extends Component {
 @connect(state => ({
   user: state.auth.user
 }))
-export default
-class AppContainer {
+
+export default class AppContainer {
   static propTypes = {
     user: PropTypes.object,
     dispatch: PropTypes.func.isRequired

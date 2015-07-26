@@ -33,6 +33,7 @@ export default class Html extends Component {
           {webpackStats.css.files.map((css, i) =>
             <link href={css} key={i} media="screen, projection"
                   rel="stylesheet" type="text/css"/>)}
+          <script src="https://maps.googleapis.com/maps/api/js"></script>
         </head>
         <body>
           <div id="content" dangerouslySetInnerHTML={{__html: React.renderToString(component)}}/>
