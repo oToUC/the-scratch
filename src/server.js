@@ -20,7 +20,7 @@ const proxy = httpProxy.createProxyServer({
 });
 
 app.use(compression());
-app.use(favicon(path.join(__dirname, '..', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 
 let webpackStats;
 
