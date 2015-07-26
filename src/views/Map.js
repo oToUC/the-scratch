@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 
 const styles = {
     map: {
-        'margin-top': '-20px',
-        height: '400px',
+        marginTop: '-20px',
+        marginTop: '-20px',
+        height: '600px',
         width: '100%'
     }
 };
@@ -27,17 +28,15 @@ class Map extends Component {
 
     render() {
         return (
-            <div>
-                <div ref='map' style={styles.map}></div>
-            </div>
+            <div ref='map' style={styles.map}></div>
         );
     }
 }
 
 Map.defaultProps = {
     initialZoom: 8,
-    mapCenterLat: 43.6425569,
-    mapCenterLng: -79.4073126
+    mapCenterLat: 49.191030,
+    mapCenterLng: 16.611521
 };
 
 export default Map;
