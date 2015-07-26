@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 const styles = {
     map: {
         marginTop: '-20px',
-        marginTop: '-20px',
         height: '600px',
         width: '100%'
     }
