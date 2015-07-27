@@ -14,3 +14,4 @@ tmp/authors.txt
 
 # Webpack stats
 webpack-stats.json
+*.log
