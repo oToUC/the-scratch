@@ -1,18 +1,12 @@
-import path from 'path';
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {isLoaded} from '../reducers/widgets';
 import {connect} from 'react-redux';
 import * as widgetActions from '../actions/widgetActions';
 import {load as loadWidgets} from '../actions/widgetActions';
+import {requireServerCss} from '../util';
 
-const styles = (function getStyle() {
-  const stats = require('../../webpack-stats.json');
-  if (__CLIENT__) {
-    return require('./Widgets.scss');
-  }
-  return stats.css.modules[path.join(__dirname, './Widgets.scss')];
-})();
+const styles = __CLIENT__ ? require('./Widgets.scss') : requireServerCss(require.resolve('./Widgets.scss'));
 
 class Widgets extends Component {
   static propTypes = {
@@ -29,11 +23,16 @@ class Widgets extends Component {
       refreshClassName += ' fa-spin';
     }
     return (
-      <div className={styles.widgets}>
+      <div className={styles.widgets + ' container'}>
         <h1>
           Widgets
           <button className={styles.refreshBtn + ' btn btn-success'} onClick={load}><i className={refreshClassName}/> {' '} Reload Widgets</button>
         </h1>
+        <p>
+          This data was loaded from the server before this route was rendered. If you hit refresh on your browser, the
+          data loading will take place on the server before the page is returned. If you navigated here from another
+          page, the data was fetched from the client.
+        </p>
         {error &&
         <div className="alert alert-danger" role="alert">
           <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

@@ -51,19 +51,14 @@ app.use((req, res) => {
   } else {
     universalRouter(location, undefined, store)
       .then(({component, transition, isRedirect}) => {
-        try {
-
-          if (isRedirect) {
-            res.redirect(transition.redirectInfo.pathname);
-            return;
-          }
-          res.send('<!doctype html>\n' +
-            React.renderToString(<Html webpackStats={webpackStats} component={component} store={store}/>));
-        } catch (error) {
-          console.error('REACT ERROR:', pretty.render(error));
-          res.status(500).send({error: error.stack});
+        if (isRedirect) {
+          res.redirect(transition.redirectInfo.pathname);
+          return;
         }
-      }, (error) => {
+        res.send('<!doctype html>\n' +
+          React.renderToString(<Html webpackStats={webpackStats} component={component} store={store}/>));
+      })
+      .catch((error) => {
         console.error('ROUTER ERROR:', pretty.render(error));
         res.status(500).send({error: error.stack});
       });
@@ -78,6 +73,7 @@ if (config.port) {
       api().then(() => {
         console.info('==> ✅  Server is listening');
         console.info('==> 🌎  %s running on port %s, API on port %s', config.app.name, config.port, config.apiPort);
+        console.info('----------\n==> 💻  Open http://localhost:%s in a browser to view the app.', config.port);
       });
     }
   });

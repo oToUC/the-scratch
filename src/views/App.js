@@ -10,15 +10,9 @@ import * as authActions from '../actions/authActions';
 import {load as loadAuth} from '../actions/authActions';
 import InfoBar from '../components/InfoBar';
 import {createTransitionHook} from '../universalRouter';
+import {requireServerCss} from '../util';
 
-const styles = (function getStyle() {
-  const stats = require('../../webpack-stats.json');
-  if (__CLIENT__) {
-    return require('./App.scss');
-  }
-
-  return stats.css.modules[path.join(__dirname, './App.scss')];
-})();
+const styles = __CLIENT__ ? require('./App.scss') : requireServerCss(require.resolve('./App.scss'));
 
 class App extends Component {
   static propTypes = {
@@ -33,7 +27,13 @@ class App extends Component {
 
   componentWillMount() {
     const {router, store} = this.context;
-    router.addTransitionHook(createTransitionHook(store));
+    this.transitionHook = createTransitionHook(store);
+    router.addTransitionHook(this.transitionHook);
+  }
+
+  componentWillUnmount() {
+    const {router, store} = this.context;
+    router.removeTransitionHook(this.transitionHook);
   }
 
   handleLogout(event) {
@@ -44,24 +44,40 @@ class App extends Component {
   render() {
     const {user} = this.props;
     return (
-      <div className={styles.app + ' container'}>
+      <div className={styles.app}>
         <nav className="navbar navbar-default" role="navigation">
           <div className="container-fluid">
             <ul className="nav navbar-nav">
               <li><Link to="/">Home</Link></li>
               <li><Link to="/map">Map</Link></li>
               <li><Link to="/widgets">Widgets</Link></li>
+              <li><Link to="/survey">Survey</Link></li>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/redirect">Redirect to Home</Link></li>
               {!user && <li><Link to="/login">Login</Link></li>}
               {user && <li className="logout-link"><a href="/logout" onClick={::this.handleLogout}>Logout</a></li>}
             </ul>
-            {user && <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
+            {user &&
+            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
+            <ul className="nav navbar-nav navbar-right">
+              <li>
+                <a href="https://github.com/erikras/react-redux-universal-hot-example"
+                   target="_blank" title="View on Github"><i className="fa fa-github"/></a>
+              </li>
+            </ul>
           </div>
         </nav>
 
         <div className={styles.appContent}>
           {this.props.children}
+        </div>
+        <InfoBar/>
+
+        <div className="well text-center">
+          Have questions? Ask for help <a
+          href="https://github.com/erikras/react-redux-universal-hot-example/issues"
+          target="_blank">on Github</a> or in the <a
+          href="http://www.reactiflux.com/" target="_blank">#react-redux-universal</a> Slack channel.
         </div>
       </div>
     );
