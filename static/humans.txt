@@ -3,13 +3,13 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Tomas Korcak -- Developer -- @korczis
 
 # THANKS
 
-    <name>
+    Erik Rasmussen -- https://github.com/erikras/react-redux-universal-hot-example
 
 # TECHNOLOGY COLOPHON
 
     CSS3, HTML5
-    Apache Server Configs, jQuery, Modernizr, Normalize.css
+    babel, eslint, express.js, react.js, redux, webpack, bower
