@@ -26,6 +26,7 @@ export default class Html extends Component {
           <meta charSet="utf-8"/>
           <title>React Redux Universal Hot Example</title>
           <link rel="shortcut icon" href="/favicon.ico" />
+          <link type="text/plain" rel="author" href="/humans.txt" />
           <link href={cdn + 'twitter-bootstrap/3.3.5/css/bootstrap.css'}
                 media="screen, projection" rel="stylesheet" type="text/css" />
           <link href={cdn + 'font-awesome/4.3.0/css/font-awesome.min.css'}
@@ -33,7 +34,13 @@ export default class Html extends Component {
           {webpackStats.css.files.map((css, i) =>
             <link href={css} key={i} media="screen, projection"
                   rel="stylesheet" type="text/css"/>)}
+
           <script src="https://maps.googleapis.com/maps/api/js"></script>
+          <script src="/components/dat.gui/dat.gui.min.js"></script>
+          <script src="/components/dat.gui/dat.color.min.js"></script>
+          <script src="/components/three.js/three.min.js"></script>
+          <script src="/components/google-maps-api-threejs-layer/threejs-layer.js"></script>
+          <script src="/components/stats.js/build/stats.min.js"></script>
         </head>
         <body>
           <div id="content" dangerouslySetInnerHTML={{__html: React.renderToString(component)}}/>

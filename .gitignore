@@ -4,8 +4,11 @@
 # node.js modules
 node_modules/
 
+# Bower components
+static/components/
+
 # Compiled stuff
-dist/
+static/dist/
 
 # Generated file with git stats
 tmp/authors.txt
