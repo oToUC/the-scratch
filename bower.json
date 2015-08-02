@@ -1,0 +1,30 @@
+{
+  "name": "the-scratch",
+  "version": "0.0.0",
+  "homepage": "https://github.com/korczis/the-scratch",
+  "authors": [
+    "Tomas Korcak <korczis@gmail.com>"
+  ],
+  "main": "babel.server.js",
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "dat.gui": "*",
+    "google-maps-api-threejs-layer": "*",
+    "rbush": "~1.3.5",
+    "stats.js": "*",
+    "three.js": "~0.71.0",
+    "rbush-knn": "~1.0.2",
+    "tinyqueue": "~1.0.1"
+  }
+}
