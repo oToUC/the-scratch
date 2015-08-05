@@ -31,7 +31,7 @@ class InfoBar extends Component {
 @connect(state => ({
   info: state.info.data
 }))
-export default
+
 class InfoBarContainer {
   static propTypes = {
     info: PropTypes.object,
@@ -43,3 +43,5 @@ class InfoBarContainer {
     return <InfoBar info={info} {...bindActionCreators(infoActions, dispatch)}/>;
   }
 }
+
+export default InfoBarContainer;
