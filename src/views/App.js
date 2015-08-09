@@ -32,8 +32,18 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    const {router, store} = this.context;
+    const {router} = this.context;
     router.removeTransitionHook(this.transitionHook);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.user && nextProps.user) {
+      // login
+      this.context.router.transitionTo('/loginSuccess');
+    } else if (this.props.user && !nextProps.user) {
+      // logout
+      this.context.router.transitionTo('/');
+    }
   }
 
   handleLogout(event) {
@@ -45,16 +55,20 @@ class App extends Component {
     const {user} = this.props;
     return (
       <div className={styles.app}>
-        <nav className="navbar navbar-default" role="navigation">
-          <div className="container-fluid">
+        <nav className="navbar navbar-default navbar-fixed-top">
+          <div className="container">
+            <Link to="/" className="navbar-brand">
+              <div className={styles.brand}/>
+              React Redux Example
+            </Link>
+
             <ul className="nav navbar-nav">
-              <li><Link to="/">Home</Link></li>
+              <li><Link to="/">Intro</Link></li>
               <li><Link to="/map">Map</Link></li>
               <li><Link to="/widgets">Widgets</Link></li>
               <li><Link to="/survey">Survey</Link></li>
               <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/redirect">Redirect to Home</Link></li>
-              <li><Link to="/auth">Auth</Link></li>
+             <li><Link to="/auth">Auth</Link></li>
               {!user && <li><Link to="/login">Login</Link></li>}
               {user && <li className="logout-link"><a href="/logout" onClick={::this.handleLogout}>Logout</a></li>}
             </ul>
@@ -88,8 +102,8 @@ class App extends Component {
 @connect(state => ({
   user: state.auth.user
 }))
-
-export default class AppContainer {
+export default
+class AppContainer extends Component {
   static propTypes = {
     user: PropTypes.object,
     dispatch: PropTypes.func.isRequired

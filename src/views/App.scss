@@ -1,10 +1,6 @@
 body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
-body, html {
-  height: 100%;
-  width: 100%;
-}
 
 .app {
   :global(.navbar-brand) {
@@ -30,5 +26,5 @@ body, html {
   }
 }
 .appContent {
-  color: blue;
+  margin: 55px 0; // for fixed navbar
 }

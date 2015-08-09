@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 
 const styles = {
     map: {
-        marginTop: '-20px',
-        height: '600px',
+        position: 'absolute',
+        height: 'calc(100% - 55px)',
         width: '100%'
     },
     stats: {
@@ -18,10 +18,24 @@ class Map extends Component {
         this.layer = null;
         this.stats = null;
     }
+
     componentDidMount(rootNode) {
         var mapOptions = {
-                center: this.mapCenterLatLng(),
-                zoom: this.props.initialZoom
+            center: this.mapCenterLatLng(),
+            zoom: this.props.initialZoom,
+            mapTypeControlOptions: {
+                mapTypeIds: []
+            },
+            panControl: false,
+            zoomControl: true,
+            mapTypeControl: false,
+            scaleControl: false,
+            streetViewControl: false,
+            overviewMapControl: false,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL,
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            }
         };
 
         var map = new google.maps.Map(React.findDOMNode(this.refs.map), mapOptions);
@@ -52,10 +66,10 @@ class Map extends Component {
 
     render() {
         return (
-            <div style={{height: '100%'}}>
+            <div ref='mapContainer'>
 
-                <div ref='map' style={{"height" : "100%"}}></div>
-                <div ref="stats" style={styles.stats} />
+                <div ref='map' style={styles.map}></div>
+                <div ref="stats" style={styles.stats}/>
             </div>
         );
     }

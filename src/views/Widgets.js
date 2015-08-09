@@ -70,8 +70,7 @@ class Widgets extends Component {
   error: state.widgets.error,
   loading: state.widgets.loading
 }))
-
-class WidgetsContainer {
+export default class WidgetsContainer extends Component {
   static propTypes = {
     widgets: PropTypes.array,
     error: PropTypes.string,
@@ -91,5 +90,3 @@ class WidgetsContainer {
                     loading={loading} {...bindActionCreators(widgetActions, dispatch)}/>;
   }
 }
-
-export default WidgetsContainer;
