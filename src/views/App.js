@@ -54,6 +54,7 @@ class App extends Component {
               <li><Link to="/survey">Survey</Link></li>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/redirect">Redirect to Home</Link></li>
+              <li><Link to="/auth">Auth</Link></li>
               {!user && <li><Link to="/login">Login</Link></li>}
               {user && <li className="logout-link"><a href="/logout" onClick={::this.handleLogout}>Logout</a></li>}
             </ul>

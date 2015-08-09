@@ -52,9 +52,9 @@ class Map extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{height: '100%'}}>
 
-                <div ref='map' style={styles.map}></div>
+                <div ref='map' style={{"height" : "100%"}}></div>
                 <div ref="stats" style={styles.stats} />
             </div>
         );

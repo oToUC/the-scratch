@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route} from 'react-router';
 import App from 'views/App';
+import Auth from 'views/Auth';
 import Home from 'views/Home';
 import Widgets from 'views/Widgets';
 import About from 'views/About';
@@ -13,6 +14,7 @@ import Redirect from 'views/Redirect';
 export default (
   <Route component={App}>
     <Route path="/" component={Home}/>
+    <Route path="/auth" component={Auth}/>
     <Route path="/widgets" component={Widgets}/>
     <Route path="/about" component={About}/>
     <Route path="/login" component={Login}/>
