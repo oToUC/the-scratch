@@ -30,19 +30,3 @@ export default class InfoBar extends Component {
     );
   }
 }
-
-@connect(state => ({
-  info: state.info.data
-}))
-export default
-class InfoBarContainer {
-  static propTypes = {
-    info: PropTypes.object,
-    dispatch: PropTypes.func.isRequired
-  }
-
-  render() {
-    const { info, dispatch } = this.props;
-    return <InfoBar info={info} {...bindActionCreators(infoActions, dispatch)}/>;
-  }
-}
