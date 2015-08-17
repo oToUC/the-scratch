@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
 
+import Gui from '../components/Gui';
+import GuiRow from '../components/GuiRow';
+import Input from '../components/Input';
+import Label from '../components/Label';
+import List from '../components/List';
+import ListItem from '../components/ListItem';
+
 const styles = {
     map: {
         position: 'absolute',
@@ -67,9 +74,13 @@ class Map extends Component {
     render() {
         return (
             <div ref='mapContainer'>
+              <div ref='map' style={styles.map}></div>
+              <div ref="stats" style={styles.stats}/>
 
-                <div ref='map' style={styles.map}></div>
-                <div ref="stats" style={styles.stats}/>
+              <Gui>
+                <Label>What is the name?</Label>
+                <Input type={'text'} style={{width: '60%', float: 'left'}}/>
+              </Gui>
             </div>
         );
     }

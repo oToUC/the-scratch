@@ -17,4 +17,5 @@ tmp/authors.txt
 
 # Webpack stats
 webpack-stats.json
+/src/views/Map.js
 *.log
