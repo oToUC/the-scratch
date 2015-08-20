@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import Immutable from 'immutable';
 
 export default class Gui extends Component {
   static style = {
@@ -59,7 +60,7 @@ export default class Gui extends Component {
   };
 
   state = {
-    style: Gui.style
+    style: Immutable.fromJS(Gui.style).toJS()
   };
 
   constructor(props) {
