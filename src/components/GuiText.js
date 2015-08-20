@@ -65,8 +65,11 @@ export default class GuiText extends Component {
   }
 
   handleChange(e) {
-    this.state.value = e.target.value;
+    const value = e.target.value;
+    this.state.value = value;
     this.setState(this.state);
+
+    console.log(value);
   }
 
   render() {

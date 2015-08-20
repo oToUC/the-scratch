@@ -74,13 +74,18 @@ class Map extends Component {
         <div ref="stats" style={styles.stats}/>
 
         <Gui align="left">
-          <GuiText title="Firstname" onchange="{this.firstnameChanged}"/>
-          <GuiText title="Lastname" onchange="{this.firstnameChanged}"/>
+          <GuiText title="Firstname" defaultValue="Little Bobby Table"/>
+          <GuiText title="Lastname" />
         </Gui>
 
         <Gui align="right">
-          <GuiText title="Firstname" onchange="{this.firstnameChanged}"/>
-          <GuiText title="Lastname" onchange="{this.firstnameChanged}"/>
+          <GuiText title="Street" />
+          <GuiText title="City" />
+        </Gui>
+
+        <Gui align="left">
+          <GuiText title="Job" />
+          <GuiText title="Salary" />
         </Gui>
       </div>
     );
