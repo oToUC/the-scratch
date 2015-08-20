@@ -108,13 +108,17 @@ export default class Gui extends Component {
       return <li style={this.state.style.li} key={index + itemText}>{itemText}</li>;
     }
 
-    const items = this.props.children instanceof Array ? this.props.children : [this.props.children];
+    const children = !!this.props.children ? this.props.children : [];
+    const items = children instanceof Array ? children : [children];
 
     return (
       <div style={this.state.style.gui} ref="gui">
+        {/* GUI List items */}
         <ul style={this.state.style.ul}>
             {items.map(createItem)}
         </ul>
+
+        {/* Handle for dragging */}
         <div style={this.state.style.dragger}
              onMouseDown={this.onDragStart.bind(this)}
         />
