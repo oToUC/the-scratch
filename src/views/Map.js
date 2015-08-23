@@ -89,23 +89,73 @@ class Map extends Component {
         <div ref="stats" style={Map.styles.stats}/>
 
         <Gui align="left" header="Person">
-          <GuiText title="Firstname" defaultValue="Little Bobby" onChange={this.onChange.bind(this)} />
-          <GuiText title="Lastname" defaultValue="Table" />
-          <GuiEmail title="Email" defaultValue="bobby@exmaple.com"/>
-          <GuiNumber title="Age" defaultValue={45} min={0} max={200} step={1} />
-          <GuiNumber title="Hapiness" defaultValue={0.5} min={0} max={1} step={0.01} />
-          <GuiBoolean title="Employed?" defaultChecked={true} onChange={this.onChange.bind(this)} />
-          <GuiText title="Info" value="read only value" disabled/>
+          <GuiText
+            title="Firstname"
+            defaultValue="Little Bobby"
+            onChange={this.onChange.bind(this)}
+          />
+
+          <GuiText
+            title="Lastname"
+            defaultValue="Table"
+          />
+
+          <GuiEmail
+            title="Email"
+            defaultValue="bobby@exmaple.com"
+          />
+
+          <GuiNumber
+            title="Age"
+            defaultValue={45}
+            min={0}
+            max={200}
+            step={1}
+          />
+
+          <GuiNumber
+            title="Hapiness"
+            defaultValue={0.5}
+            min={0}
+            max={1}
+            step={0.01}
+          />
+
+          <GuiBoolean
+            title="Employed?"
+            defaultChecked={true}
+            onChange={this.onChange.bind(this)}
+          />
+
+          <GuiText
+            title="Info"
+            value="read only value"
+            disabled
+          />
         </Gui>
 
         <Gui align="right" header="Address">
-          <GuiText title="Street" placeholder="Street name"/>
-          <GuiText title="City" placeholder="City name" />
+          <GuiText
+            title="Street"
+            placeholder="Street name"
+          />
+
+          <GuiText
+            title="City"
+            placeholder="City name"
+          />
         </Gui>
 
         <Gui align="left" header="Employment">
-          <GuiText title="Job" placeholder="Job Title"/>
-          <GuiNumber title="Salary" placeholder="Annual salary in $" />
+          <GuiText
+            title="Job"
+            placeholder="Job Title"
+          />
+
+          <GuiNumber
+            title="Salary"
+            placeholder="Annual salary in $"
+          />
         </Gui>
       </div>
     );
