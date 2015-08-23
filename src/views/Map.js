@@ -2,22 +2,29 @@ import React, {Component} from 'react';
 
 import Gui from '../components/Gui/Gui';
 import GuiBoolean from '../components/Gui/Boolean';
+import GuiEmail from '../components/Gui/Email';
 import GuiFolder from '../components/Gui/Folder';
 import GuiNumber from '../components/Gui/Number';
 import GuiText from '../components/Gui/Text';
 
-const styles = {
-  map: {
-    position: 'absolute',
-    height: 'calc(100% - 55px)',
-    width: '100%'
-  },
-  stats: {
-    zIndex: 100
-  }
-};
-
 class Map extends Component {
+  static styles = {
+    map: {
+      position: 'absolute',
+      height: 'calc(100% - 55px)',
+      width: '100%'
+    },
+    stats: {
+      zIndex: 100
+    }
+  };
+
+  static defaultProps = {
+    initialZoom: 8,
+    mapCenterLat: 49.191030,
+    mapCenterLng: 16.611521
+  };
+
   constructor(props) {
     super(props);
 
@@ -71,31 +78,34 @@ class Map extends Component {
   }
 
   onChange(e) {
-    debug;
+    // debug;
   }
 
   render() {
     const self = this;
     return (
       <div ref='mapContainer'>
-        <div ref='map' style={styles.map}></div>
-        <div ref="stats" style={styles.stats}/>
+        <div ref='map' style={Map.styles.map}></div>
+        <div ref="stats" style={Map.styles.stats}/>
 
-        <Gui align="left">
+        <Gui align="left" header="Person">
           <GuiText title="Firstname" defaultValue="Little Bobby" onChange={this.onChange.bind(this)} />
           <GuiText title="Lastname" defaultValue="Table" />
-          <GuiNumber title="Number" defaultValue={86} />
-          <GuiBoolean title="Employed?" defaultValue={true} />
+          <GuiEmail title="Email" defaultValue="bobby@exmaple.com"/>
+          <GuiNumber title="Age" defaultValue={45} min={0} max={200} step={1} />
+          <GuiNumber title="Hapiness" defaultValue={0.5} min={0} max={1} step={0.01} />
+          <GuiBoolean title="Employed?" defaultChecked={true} onChange={this.onChange.bind(this)} />
+          <GuiText title="Info" value="read only value" disabled/>
         </Gui>
 
-        <Gui align="right">
-          <GuiText title="Street" />
-          <GuiText title="City" />
+        <Gui align="right" header="Address">
+          <GuiText title="Street" placeholder="Street name"/>
+          <GuiText title="City" placeholder="City name" />
         </Gui>
 
-        <Gui align="left">
-          <GuiText title="Job" />
-          <GuiText title="Salary" />
+        <Gui align="left" header="Employment">
+          <GuiText title="Job" placeholder="Job Title"/>
+          <GuiNumber title="Salary" placeholder="Annual salary in $" />
         </Gui>
       </div>
     );
@@ -113,11 +123,5 @@ class Map extends Component {
     requestAnimationFrame(this.tick.bind(this));
   }
 }
-
-Map.defaultProps = {
-  initialZoom: 8,
-  mapCenterLat: 49.191030,
-  mapCenterLng: 16.611521
-};
 
 export default Map;

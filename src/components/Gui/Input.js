@@ -1,35 +1,40 @@
 import React, {Component, PropTypes} from 'react';
 
-const style = {
-  field: {
-    float: 'left',
-    width: '60%'
-  },
-
-  input: {
-    position: 'relative',
-    color: 'black',
-    width: '100%'
-  },
-
-  span: {
-    cursor: 'default',
-    float: 'left',
-    clear: 'left',
-    width: '40%',
-    fontFamily: "'Lucida Grande', sans-serif",
-    fontSize: '11px'
-  },
-
-  label: {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
-  }
-};
-
 export default class GuiInput extends Component {
+  static style = {
+    field: {
+      float: 'left',
+      width: '60%'
+    },
+
+    input: {
+      position: 'relative',
+      color: '#1ed36f',
+      width: '100%',
+      background: '#303030',
+      border: 0,
+      outline: 'none',
+      placeholder: 'white'
+    },
+
+    span: {
+      cursor: 'default',
+      float: 'left',
+      clear: 'left',
+      width: '40%',
+      fontFamily: "'Lucida Grande', sans-serif",
+      fontSize: '11px'
+    },
+
+    label: {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    }
+  };
+
   static defaultProps = {
-    type: 'text'
+    type: 'text',
+    style: GuiInput.style
   };
 
   state = {
@@ -66,13 +71,13 @@ export default class GuiInput extends Component {
   render() {
     return (
       <div>
-        <span style={style.span}>
-          <label style={style.label}>{this.props.title}</label>
+        <span style={GuiInput.style.span}>
+          <label style={GuiInput.style.label}>{this.props.title}</label>
         </span>
-        <div style={style.field}>
+        <div style={GuiInput.style.field}>
           <input
             {...this.props}
-            style={style.input}
+            style={GuiInput.style.input}
           />
         </div>
       </div>

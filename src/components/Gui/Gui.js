@@ -99,10 +99,18 @@ export default class Gui extends Component {
     const children = !!this.props.children ? this.props.children : [];
     const items = children instanceof Array ? children : [children];
 
+    let header = null;
+    if(this.props.header) {
+      header = <li style={this.state.style.li}>
+        <span>{this.props.header}</span>
+      </li>
+    }
+
     return (
       <div style={this.state.style.gui} ref="gui">
         {/* GUI List items */}
         <ul style={this.state.style.ul}>
+            {header}
             {items.map(createItem)}
         </ul>
 
