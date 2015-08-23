@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 
-import Gui from '../components/Gui';
-import GuiText from '../components/GuiText';
+import Gui from '../components/Gui/Gui';
+import GuiBoolean from '../components/Gui/Boolean';
+import GuiFolder from '../components/Gui/Folder';
+import GuiNumber from '../components/Gui/Number';
+import GuiText from '../components/Gui/Text';
 
 const styles = {
   map: {
@@ -67,15 +70,22 @@ class Map extends Component {
     return new google.maps.LatLng(props.mapCenterLat, props.mapCenterLng);
   }
 
+  onChange(e) {
+    debug;
+  }
+
   render() {
+    const self = this;
     return (
       <div ref='mapContainer'>
         <div ref='map' style={styles.map}></div>
         <div ref="stats" style={styles.stats}/>
 
         <Gui align="left">
-          <GuiText title="Firstname" defaultValue="Little Bobby Table"/>
-          <GuiText title="Lastname" />
+          <GuiText title="Firstname" defaultValue="Little Bobby" onChange={this.onChange.bind(this)} />
+          <GuiText title="Lastname" defaultValue="Table" />
+          <GuiNumber title="Number" defaultValue={86} />
+          <GuiBoolean title="Employed?" defaultValue={true} />
         </Gui>
 
         <Gui align="right">

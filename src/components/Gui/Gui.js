@@ -28,18 +28,6 @@ export default class Gui extends Component {
       marginBottom: '10px'
     },
 
-    guiLeft: {
-
-    },
-
-    holder: {
-      width: '6px',
-      right: '10px',
-      // height: '420px',
-      cursor: 'ew-resize',
-      position: 'absolute'
-    },
-
     li: {
       paddingTop: 0,
       paddingRight: '4px',
@@ -89,11 +77,11 @@ export default class Gui extends Component {
   }
 
   onDrag(e) {
-    e.preventDefault();
-
     if(!this.dragStartX) {
       return;
     }
+
+    e.preventDefault();
 
     const diff = e.clientX - this.dragStartX;
     this.dragStartX = e.clientX;
@@ -121,7 +109,7 @@ export default class Gui extends Component {
         {/* Handle for dragging */}
         <div style={this.state.style.dragger}
              onMouseDown={this.onDragStart.bind(this)}
-        />
+        ></div>
       </div>
     );
   }

@@ -27,9 +27,13 @@ const style = {
   }
 };
 
-export default class GuiText extends Component {
+export default class GuiInput extends Component {
   static defaultProps = {
     type: 'text'
+  };
+
+  state = {
+    value: this.props.defaultValue
   };
 
   static propTypes = {
@@ -57,31 +61,18 @@ export default class GuiText extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      type: props.type,
-      value: null
-    };
-  }
-
-  handleChange(e) {
-    const value = e.target.value;
-    this.state.value = value;
-    this.setState(this.state);
-
-    console.log(value);
   }
 
   render() {
     return (
       <div>
-        <span style={style.span}><label style={style.label}>{this.props.title}</label></span>
+        <span style={style.span}>
+          <label style={style.label}>{this.props.title}</label>
+        </span>
         <div style={style.field}>
           <input
-            type={this.state.type}
+            {...this.props}
             style={style.input}
-            defaultValue='42'
-            onChange={this.handleChange.bind(this)}
           />
         </div>
       </div>
