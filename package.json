@@ -65,10 +65,10 @@
     "express-session": "^1.11.3",
     "file-loader": "^0.8.4",
     "http-proxy": "^1.11.1",
-
     "immutable": "^3.7.4",
     "lru-memoize": "0.0.1",
     "piping": "0.1.8",
+    "pm2": "^0.14.7",
     "pretty-error": "^1.1.2",
     "query-string": "^2.4.0",
     "react": "0.13.3",

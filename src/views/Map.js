@@ -89,16 +89,18 @@ class Map extends Component {
         <div ref="stats" style={Map.styles.stats}/>
 
         <Gui align="left" header="Person">
-          <GuiText
-            title="Firstname"
-            defaultValue="Little Bobby"
-            onChange={this.onChange.bind(this)}
-          />
+          <GuiFolder>
+            <GuiText
+              title="Firstname"
+              defaultValue="Little Bobby"
+              onChange={this.onChange.bind(this)}
+            />
 
-          <GuiText
-            title="Lastname"
-            defaultValue="Table"
-          />
+            <GuiText
+              title="Lastname"
+              defaultValue="Table"
+            />
+          </GuiFolder>
 
           <GuiEmail
             title="Email"

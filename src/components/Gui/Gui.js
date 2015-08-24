@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import Immutable from 'immutable';
 
+import GuiFolder from './Folder';
+
 export default class Gui extends Component {
   static style = {
     dragger: {
@@ -92,27 +94,12 @@ export default class Gui extends Component {
   }
 
   render() {
-    const createItem = (itemText, index) => {
-      return <li style={this.state.style.li} key={index + itemText}>{itemText}</li>;
-    }
-
-    const children = !!this.props.children ? this.props.children : [];
-    const items = children instanceof Array ? children : [children];
-
-    let header = null;
-    if(this.props.header) {
-      header = <li style={this.state.style.li}>
-        <span>{this.props.header}</span>
-      </li>
-    }
-
     return (
       <div style={this.state.style.gui} ref="gui">
         {/* GUI List items */}
-        <ul style={this.state.style.ul}>
-            {header}
-            {items.map(createItem)}
-        </ul>
+        <GuiFolder header={this.props.header}>
+          {this.props.children}
+        </GuiFolder>
 
         {/* Handle for dragging */}
         <div style={this.state.style.dragger}
