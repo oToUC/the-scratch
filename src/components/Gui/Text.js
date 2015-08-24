@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import GuiInput from './Input';
 
 export default class GuiText extends Component {
+  static listItemClassName = 'field text';  
+
   static defaultProps = {
     type: 'text'
   };

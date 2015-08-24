@@ -32,6 +32,8 @@ export default class GuiInput extends Component {
     }
   };
 
+  static listItemClassName = 'field input';  
+
   static defaultProps = {
     type: 'text',
     style: GuiInput.style

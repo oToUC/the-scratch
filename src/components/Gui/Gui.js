@@ -95,7 +95,7 @@ export default class Gui extends Component {
 
   render() {
     return (
-      <div style={this.state.style.gui} ref="gui">
+      <div className="menu" style={this.state.style.gui} ref="gui">
         {/* GUI List items */}
         <GuiFolder header={this.props.header}>
           {this.props.children}

@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import GuiInput from './Input';
 
 export default class GuiEmail extends Component {
+  static listItemClassName = 'field email';  
+
   static defaultProps = {
     type: 'email'
   };

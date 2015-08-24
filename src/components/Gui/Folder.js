@@ -24,6 +24,8 @@ export default class GuiFolder extends Component {
     }
   };
 
+  static listItemClassName = 'folder';  
+
   static defaultProps = {};
 
   state = {
@@ -36,7 +38,7 @@ export default class GuiFolder extends Component {
 
   render() {
     const createItem = (itemText, index) => {
-      return <li style={this.state.style.li} key={index + itemText}>{itemText}</li>;
+      return <li className={itemText.type.listItemClassName} style={this.state.style.li} key={index + itemText}>{itemText}</li>;
     };
 
     const children = !!this.props.children ? this.props.children : [];
