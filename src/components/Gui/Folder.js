@@ -1,35 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import Immutable from 'immutable';
 
-const style = {};
-
 export default class GuiFolder extends Component {
-  static style = {
-    li: {
-      paddingTop: 0,
-      paddingRight: '4px',
-      paddingBottom: 0,
-      paddingLeft: '5px',
-      overflow: 'hidden',
-      lineHeight: '27px',
-      height: '27px'
-    },
+  static listItemClassName = 'folder';
 
-    ul: {
-      margin: 0,
-      padding: 0,
-      clear: 'both',
-      listStyle: 'none',
-      width: '100%'
-    }
-  };
-
-  static listItemClassName = 'folder';  
-
-  static defaultProps = {};
-
-  state = {
-    style: Immutable.fromJS(GuiFolder.style).toJS()
+  static defaultProps = {
+    style: require('./Folder.scss')
   };
 
   constructor(props) {
@@ -38,7 +14,7 @@ export default class GuiFolder extends Component {
 
   render() {
     const createItem = (itemText, index) => {
-      return <li className={itemText.type.listItemClassName} style={this.state.style.li} key={index + itemText}>{itemText}</li>;
+      return <li className={itemText.type.listItemClassName + ' ' + this.props.style.li} key={index + itemText}>{itemText}</li>;
     };
 
     const children = !!this.props.children ? this.props.children : [];
@@ -46,15 +22,15 @@ export default class GuiFolder extends Component {
 
     let header = null;
     if (this.props.header) {
-      header = <div style={this.state.style.li}>
+      header = <div className={this.props.style.li}>
         <span>{this.props.header}</span>
       </div>
     }
 
     return (
-      <div>
+      <div className={this.props.style.folder}>
         {header}
-        <ul style={this.state.style.ul}>
+        <ul className={this.props.style.ul}>
           {items.map(createItem)}
         </ul>
       </div>
