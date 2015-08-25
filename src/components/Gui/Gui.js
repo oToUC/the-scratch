@@ -5,7 +5,7 @@ import GuiFolder from './Folder';
 
 export default class Gui extends Component {
   static defaultProps = {
-    style: Immutable.fromJS(require('./Gui.scss')).toJS()
+    style: require('./Gui.scss')
   };
 
   state = {

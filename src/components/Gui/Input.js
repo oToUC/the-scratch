@@ -6,7 +6,7 @@ export default class GuiInput extends Component {
 
   static defaultProps = {
     type: 'text',
-    style: Immutable.fromJS(require('./Input.scss')).toJS()
+    style: require('./Input.scss')
   };
 
   state = {
