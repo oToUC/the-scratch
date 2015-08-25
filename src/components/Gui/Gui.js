@@ -4,53 +4,12 @@ import Immutable from 'immutable';
 import GuiFolder from './Folder';
 
 export default class Gui extends Component {
-  static style = {
-    dragger: {
-      width: '6px',
-      marginRight: '-3px',
-      cursor: 'ew-resize',
-      position: 'absolute',
-      right: 0,
-      backgroundColor: 'red',
-      top: 0,
-      bottom: 0
-    },
-
-    gui: {
-      position: 'relative',
-      backgroundColor: 'black',
-      color: 'white',
-      width: '215px',
-      // resize: 'both',
-      overflowX: 'hidden',
-      overflowY: 'auto',
-      float: 'left',
-      clear: 'both',
-      paddingRight: '3px',
-      marginBottom: '10px'
-    },
-
-    li: {
-      paddingTop: 0,
-      paddingRight: '4px',
-      paddingBottom: 0,
-      paddingLeft: '5px',
-      overflow: 'hidden',
-      lineHeight: '27px',
-      height: '27px'
-    },
-
-    ul: {
-      margin: 0,
-      padding: 0,
-      clear: 'both',
-      listStyle: 'none',
-      width: '100%'
-    }
+  static defaultProps = {
+    style: Immutable.fromJS(require('./Gui.scss')).toJS()
   };
 
   state = {
-    style: Immutable.fromJS(Gui.style).toJS()
+    width: 200
   };
 
   constructor(props) {
@@ -89,20 +48,20 @@ export default class Gui extends Component {
     this.dragStartX = e.clientX;
 
     const state = this.state;
-    state.style.gui.width = (parseInt(state.style.gui.width.replace('px', '')) + diff) + "px";
+    state.width += diff;
     this.setState(state);
   }
 
   render() {
     return (
-      <div className="menu" style={this.state.style.gui} ref="gui">
+      <div className={this.props.style.gui + ' menu'} style={{width: this.state.width + 'px'}}ref="gui">
         {/* GUI List items */}
         <GuiFolder header={this.props.header}>
           {this.props.children}
         </GuiFolder>
 
         {/* Handle for dragging */}
-        <div style={this.state.style.dragger}
+        <div className={this.props.style.dragger}
              onMouseDown={this.onDragStart.bind(this)}
         ></div>
       </div>

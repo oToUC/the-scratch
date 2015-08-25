@@ -1,0 +1,30 @@
+.guiInput {
+  .field {
+    float: left;
+    width: 60%
+  }
+
+  .input {
+    position: relative;
+    color: #1ed36f;
+    width: 100%;
+    background: #303030;
+    border: 0;
+    outline: none;
+    placeholder: white
+  }
+
+  .span {
+    cursor: default;
+    float: left;
+    clear: left;
+    width: 40%;
+    font-family: "Lucida Grande", sans-serif;
+    font-size: 11px
+  }
+
+  .label {
+    overflow: hidden;
+    text-overflow: ellipsis
+  }
+}

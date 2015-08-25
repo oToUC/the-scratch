@@ -1,0 +1,24 @@
+.gui {
+  position: relative;
+  background-color: black;
+  color: white;
+  width: 215px;
+  // resize: both;
+  overflow-x: hidden;
+  overflow-y: auto;
+  float: left;
+  clear: both;
+  padding-right: 3px;
+  margin-bottom: 10px;
+
+  .dragger {
+    width: 6px;
+    margin-right: -3px;
+    cursor: ew-resize;
+    position: absolute;
+    right: 0;
+    background-color: red;
+    top: 0;
+    bottom: 0;
+  }
+}
