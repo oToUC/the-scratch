@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import reduxForm from 'redux-form';
+import {connectReduxForm} from 'redux-form';
 import surveyValidation from '../validation/surveyValidation';
 import mapProps from 'map-props';
 
@@ -21,13 +20,7 @@ function asyncValidator(data) {
   });
 }
 
-@connect(state => ({
-  form: state.form
-}))
-@reduxForm('survey', ['name','email','occupation'], surveyValidation).async(asyncValidator, 'email')
-@mapProps({
-  hasEmail: props => !!props.data.email
-})
+@connectReduxForm('survey', ['name','email','occupation'], surveyValidation).async(asyncValidator, 'email')
 export default
 class SurveyForm extends Component {
   static propTypes = {
@@ -35,11 +28,11 @@ class SurveyForm extends Component {
     data: PropTypes.object.isRequired,
     dirty: PropTypes.bool.isRequired,
     errors: PropTypes.object.isRequired,
-    hasEmail: PropTypes.bool.isRequired,
     handleBlur: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
+    isDirty: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
     touched: PropTypes.object.isRequired,
     valid: PropTypes.bool.isRequired
@@ -54,7 +47,7 @@ class SurveyForm extends Component {
       handleBlur,
       handleChange,
       handleSubmit,
-      hasEmail,
+      isDirty,
       valid,
       invalid,
       pristine,
@@ -64,7 +57,10 @@ class SurveyForm extends Component {
       <div>
         <form className="form-horizontal" onSubmit={handleSubmit}>
           <div className={'form-group' + (nameError && nameTouched ? ' has-error' : '')}>
-            <label htmlFor="name" className="col-sm-2">Full Name</label>
+            <label htmlFor="name" className="col-sm-2">
+              Full Name
+              {isDirty('name') && <span>*</span>}
+            </label>
 
             <div className="col-sm-10">
               <input type="text"
@@ -77,7 +73,10 @@ class SurveyForm extends Component {
             </div>
           </div>
           <div className={'form-group' + (emailError && emailTouched ? ' has-error' : '')}>
-            <label htmlFor="email" className="col-sm-2">Email address</label>
+            <label htmlFor="email" className="col-sm-2">
+              Email address
+              {isDirty('email') && <span>*</span>}
+            </label>
 
             <div className="col-sm-10">
               <input type="email"
@@ -91,7 +90,10 @@ class SurveyForm extends Component {
             </div>
           </div>
           <div className={'form-group' + (occupationError && occupationTouched ? ' has-error' : '')}>
-            <label htmlFor="occupation" className="col-sm-2">Occupation</label>
+            <label htmlFor="occupation" className="col-sm-2">
+              Occupation
+              {isDirty('occupation') && <span>*</span>}
+            </label>
 
             <div className="col-sm-10">
               <input type="text"
@@ -111,7 +113,6 @@ class SurveyForm extends Component {
             </div>
           </div>
         </form>
-        {hasEmail && <div>We have email data!</div>}
 
         <h4>Props from redux-form</h4>
 
