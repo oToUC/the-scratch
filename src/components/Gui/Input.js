@@ -41,15 +41,17 @@ export default class GuiInput extends Component {
   }
 
   render() {
+    const { style, title, ...other } = this.props;
+
     return (
-      <div className={this.props.style.guiInput}>
-        <span className={this.props.style.span}>
-          <label className={this.props.style.label}>{this.props.title}</label>
+      <div className={style.guiInput}>
+        <span className={style.span}>
+          <label className={style.label}>{title}</label>
         </span>
-        <div className={this.props.style.field}>
+        <div className={style.field}>
           <input
-            {...this.props}
-            className={this.props.style.input}
+            className={style.input}
+            {...other}
           />
         </div>
       </div>
