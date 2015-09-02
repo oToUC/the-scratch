@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 
+import DocumentMeta from 'react-document-meta';
+
 import Gui from '../components/Gui/Gui';
 import GuiBoolean from '../components/Gui/Boolean';
+import GuiButton from '../components/Gui/Button';
 import GuiEmail from '../components/Gui/Email';
 import GuiFolder from '../components/Gui/Folder';
+import GuiSelect from '../components/Gui/Select';
 import GuiNumber from '../components/Gui/Number';
 import GuiText from '../components/Gui/Text';
 
@@ -85,11 +89,13 @@ class Map extends Component {
     const self = this;
     return (
       <div ref='mapContainer'>
+        <DocumentMeta title="React Redux Example: Map"/>
+
         <div ref='map' style={Map.styles.map}></div>
         <div ref="stats" style={Map.styles.stats}/>
 
         <Gui align="left" header="Person">
-          <GuiFolder>
+          <GuiFolder header="Name">
             <GuiText
               title="Firstname"
               defaultValue="Little Bobby"
@@ -133,6 +139,19 @@ class Map extends Component {
             title="Info"
             value="read only value"
             disabled
+          />
+
+          <GuiSelect
+            title="Layer"
+            value={[
+              'czech',
+              'germany'
+            ]}
+          />
+
+          <GuiButton
+            title='Add some drama!'
+            onChange={(e) => { console.log('clicked!'); }}
           />
         </Gui>
 

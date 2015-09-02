@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 
+import DocumentMeta from 'react-document-meta';
+
 export default class Intro extends Component {
     render() {
         return (
             <div className="container" style={{paddingTop: '30px'}}>
+                <DocumentMeta title="React Redux Example: Intro"/>
+
                 <div className="jumbotron">
                     <div className="container">
                         <h1>The Scratch</h1>

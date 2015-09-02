@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 
+import DocumentMeta from 'react-document-meta';
+
 export default class Auth extends Component {
     render() {
         return (
             <div>
+                <DocumentMeta title="React Redux Example: Auth"/>
+
                 <div className="container">
                     <div className="row text-center">
                         <h1>
