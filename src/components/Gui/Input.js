@@ -5,6 +5,7 @@ export default class GuiInput extends Component {
   static listItemClassName = 'field input';
 
   static defaultProps = {
+    element: 'input',
     type: 'text',
     style: require('./Input.scss')
   };
@@ -43,16 +44,22 @@ export default class GuiInput extends Component {
   render() {
     const { style, title, ...other } = this.props;
 
+    var element = React.createFactory(this.props.element);
+
+    const props = Immutable.fromJS(other).toJS();
+    props.className = style.input;
+
+    console.log(props);
+
+    var reactElement = element(props, this.props.children);
+
     return (
       <div className={style.guiInput}>
         <span className={style.span}>
           <label className={style.label}>{title}</label>
         </span>
         <div className={style.field}>
-          <input
-            className={style.input}
-            {...other}
-          />
+          {reactElement}
         </div>
       </div>
     );
