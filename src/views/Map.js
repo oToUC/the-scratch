@@ -12,17 +12,6 @@ import GuiNumber from '../components/Gui/Number';
 import GuiText from '../components/Gui/Text';
 
 class Map extends Component {
-  static styles = {
-    map: {
-      position: 'absolute',
-      height: 'calc(100% - 55px)',
-      width: '100%'
-    },
-    stats: {
-      zIndex: 100
-    }
-  };
-
   static defaultProps = {
     initialZoom: 8,
     mapCenterLat: 49.191030,
@@ -32,66 +21,26 @@ class Map extends Component {
   constructor(props) {
     super(props);
 
+    this.map = null;
+    this.marker = null;
     this.layer = null;
     this.stats = null;
   }
 
-  componentDidMount(rootNode) {
-    var mapOptions = {
-      center: this.mapCenterLatLng(),
-      zoom: this.props.initialZoom,
-      mapTypeControlOptions: {
-        mapTypeIds: []
-      },
-      panControl: false,
-      zoomControl: true,
-      mapTypeControl: false,
-      scaleControl: false,
-      streetViewControl: false,
-      overviewMapControl: false,
-      zoomControlOptions: {
-        style: google.maps.ZoomControlStyle.SMALL,
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-      }
-    };
-
-    var map = new google.maps.Map(React.findDOMNode(this.refs.map), mapOptions);
-    var marker = new google.maps.Marker({position: this.mapCenterLatLng(), title: 'Hi', map: map});
-
-    this.layer = new ThreejsLayer({map: map}, function (layer) {
-
-    });
-
-    this.setState({map: map});
-
-    var stats = new Stats();
-    stats.setMode(0); // 0: fps, 1: ms
-
-
-    React.findDOMNode(this.refs.stats).appendChild(stats.domElement);
-
-    this.stats = stats;
-
-    // Start ticking
-    requestAnimationFrame(this.tick.bind(this));
+  componentDidMount() {
+    this.createMap();
   }
 
-  mapCenterLatLng() {
-    var props = this.props;
-    return new google.maps.LatLng(props.mapCenterLat, props.mapCenterLng);
-  }
-
-  onChange(e) {
+  onChange(/* e */) {
     // debug;
   }
 
   render() {
-    const self = this;
     return (
-      <div ref='mapContainer'>
+      <div ref="mapContainer">
         <DocumentMeta title="React Redux Example: Map"/>
 
-        <div ref='map' style={Map.styles.map}></div>
+        <div ref="map" style={Map.styles.map}></div>
         <div ref="stats" style={Map.styles.stats}/>
 
         <Gui align="left" header="Person">
@@ -147,8 +96,8 @@ class Map extends Component {
           />
 
           <GuiButton
-            title='Add some drama!'
-            onChange={(e) => { console.log('clicked!'); }}
+            title="Add some drama!"
+            onChange={(e) => { console.log('clicked!' + e.target); }}
           />
         </Gui>
 
@@ -179,6 +128,50 @@ class Map extends Component {
     );
   }
 
+  createMap() {
+    const mapOptions = {
+      center: this.mapCenterLatLng(),
+      zoom: this.props.initialZoom,
+      mapTypeControlOptions: {
+        mapTypeIds: []
+      },
+      panControl: false,
+      zoomControl: true,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      overviewMapControl: false,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL,
+        position: google.maps.ControlPosition.LEFT_BOTTOM
+      }
+    };
+
+    this.map = new google.maps.Map(React.findDOMNode(this.refs.map), mapOptions);
+    this.marker = new google.maps.Marker({position: this.mapCenterLatLng(), title: 'Hi', map: this.map});
+
+    this.layer = new ThreejsLayer({map: this.map}, (/* layer */) => {
+
+    });
+
+    this.setState({map: this.map});
+
+    const stats = new Stats();
+    stats.setMode(0); // 0: fps, 1: ms
+
+    React.findDOMNode(this.refs.stats).appendChild(stats.domElement);
+
+    this.stats = stats;
+
+    // Start ticking
+    requestAnimationFrame(this.tick.bind(this));
+  }
+
+  mapCenterLatLng() {
+    const props = this.props;
+    return new google.maps.LatLng(props.mapCenterLat, props.mapCenterLng);
+  }
+
   tick() {
     // Begin of stats loop
     this.stats.begin();
@@ -190,6 +183,17 @@ class Map extends Component {
 
     requestAnimationFrame(this.tick.bind(this));
   }
+
+  static styles = {
+    map: {
+      position: 'absolute',
+      height: 'calc(100% - 55px)',
+      width: '100%'
+    },
+    stats: {
+      zIndex: 100
+    }
+  };
 }
 
 export default Map;

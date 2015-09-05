@@ -20,3 +20,9 @@ export default function compressionMiddleware(app) {
   app.use(compression());
 };
 ```
+
+## Routes
+
+- api
+- auth
+- root

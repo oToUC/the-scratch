@@ -16,6 +16,7 @@ export default function api() {
     app.use((req, res) => {
       const matcher = req.url.split('?')[0].split('/');
       const action = matcher && actions[matcher[1]];
+
       if (action) {
         action(req, matcher.slice(2))
           .then((result) => {
@@ -32,6 +33,7 @@ export default function api() {
         res.status(404).end('NOT FOUND');
       }
     });
+
     app.listen(config.apiPort);
     resolve();
   });
