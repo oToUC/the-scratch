@@ -8,4 +8,4 @@ export default function sessionMiddleware(app) {
     saveUninitialized: false,
     cookie: { maxAge: 60000 }
   }));
-};
+}

@@ -1,16 +1,12 @@
-import React, {Component, PropTypes} from 'react';
-import Immutable from 'immutable';
-
+import React, {Component} from 'react';
 import GuiFolder from './Folder';
 
 export default class Gui extends Component {
-  static defaultProps = {
-    style: require('./Gui.scss')
+  static propTypes = {
+    header: React.PropTypes.string
   };
 
-  state = {
-    width: 200
-  };
+  static defaultProps = {};
 
   constructor(props) {
     super(props);
@@ -38,7 +34,7 @@ export default class Gui extends Component {
   }
 
   onDrag(e) {
-    if(!this.dragStartX) {
+    if (!this.dragStartX) {
       return;
     }
 
@@ -53,18 +49,24 @@ export default class Gui extends Component {
   }
 
   render() {
+    const style = require('./Gui.scss');
+
     return (
-      <div className={this.props.style.gui + ' menu'} style={{width: this.state.width + 'px'}}ref="gui">
+      <div className={style.gui + ' menu'} style={{width: this.state.width + 'px'}}ref="gui">
         {/* GUI List items */}
         <GuiFolder header={this.props.header}>
           {this.props.children}
         </GuiFolder>
 
         {/* Handle for dragging */}
-        <div className={this.props.style.dragger}
+        <div className={style.dragger}
              onMouseDown={this.onDragStart.bind(this)}
         ></div>
       </div>
     );
   }
+
+  state = {
+    width: 200
+  };
 }

@@ -1,4 +1,3 @@
-import path from 'path';
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import CounterButton from '../components/CounterButton';

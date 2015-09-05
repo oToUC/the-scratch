@@ -12,6 +12,10 @@ import GuiNumber from '../components/Gui/Number';
 import GuiText from '../components/Gui/Text';
 
 class Map extends Component {
+  static propTypes = {
+    initialZoom: React.PropTypes.number
+  };
+
   static defaultProps = {
     initialZoom: 8,
     mapCenterLat: 49.191030,

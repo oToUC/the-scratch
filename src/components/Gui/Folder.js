@@ -1,11 +1,12 @@
-import React, {Component, PropTypes} from 'react';
-import Immutable from 'immutable';
+import React, {Component} from 'react';
 
 export default class GuiFolder extends Component {
-  static listItemClassName = 'folder';
+  static propTypes = {
+    header: React.PropTypes.string
+  };
 
   static defaultProps = {
-    style: require('./Folder.scss')
+    header: null
   };
 
   constructor(props) {
@@ -13,27 +14,26 @@ export default class GuiFolder extends Component {
   }
 
   render() {
-    const createItem = (itemText, index) => {
-      return <li className={itemText.type.listItemClassName + ' ' + this.props.style.li} key={index + itemText}>{itemText}</li>;
-    };
-
-    const children = !!this.props.children ? this.props.children : [];
-    const items = children instanceof Array ? children : [children];
+    const style = require('./Folder.scss');
 
     let header = null;
     if (this.props.header) {
-      header = <div className={this.props.style.li}>
+      header = (<div className={style.li}>
         <span>{this.props.header}</span>
-      </div>
+      </div>);
     }
 
     return (
-      <div className={this.props.style.folder}>
+      <div className={style.folder}>
         {header}
-        <ul className={this.props.style.ul}>
-          {items.map(createItem)}
+        <ul className={style.ul}>
+          {React.Children.map(this.props.children, (itemText, index) => {
+            return <li className={itemText.type.listItemClassName + ' ' + style.li} key={index + itemText}>{itemText}</li>;
+          })}
         </ul>
       </div>
     );
   }
+
+  static listItemClassName = 'folder';
 }

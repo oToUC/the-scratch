@@ -1,15 +1,13 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import GuiInput from './Input';
 
 export default class GuiSelect extends Component {
-  static listItemClassName = 'field list';
+  static propTypes = {
+    defaultValue: React.PropTypes.string
+  };
 
   static defaultProps = {
     type: 'radio'
-  };
-
-  static propTypes = {
-    defaultValue: React.PropTypes.string
   };
 
   constructor(props) {
@@ -18,7 +16,9 @@ export default class GuiSelect extends Component {
 
   render() {
     return (
-      <GuiInput element='select' {...this.props} />
+      <GuiInput element="select" {...this.props} />
     );
   }
+
+  static listItemClassName = 'field list';
 }

@@ -6,4 +6,4 @@ export default function initializeMiddleware(app) {
   compression(app);
   favicon(app);
   staticAssets(app);
-};
+}

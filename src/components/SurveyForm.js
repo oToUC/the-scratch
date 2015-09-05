@@ -26,7 +26,7 @@ function asyncValidate(data) {
   asyncValidate,
   asyncBlurFields: ['email']
 })
-export default
+
 class SurveyForm extends Component {
   static propTypes = {
     active: PropTypes.bool.isRequired,
@@ -120,3 +120,4 @@ class SurveyForm extends Component {
   }
 }
 
+export default SurveyForm;

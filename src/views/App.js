@@ -1,4 +1,3 @@
-import path from 'path';
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
@@ -39,7 +38,7 @@ const meta = {
 @connect(
     state => ({user: state.auth.user}),
     dispatch => bindActionCreators({logout}, dispatch))
-export default class App extends Component {
+class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     user: PropTypes.object,
@@ -138,3 +137,4 @@ export default class App extends Component {
   }
 }
 
+export default App;

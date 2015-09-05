@@ -21,7 +21,7 @@ import WidgetForm from '../components/WidgetForm';
     }, dispatch)
   })
 )
-export default
+
 class Widgets extends Component {
   static propTypes = {
     widgets: PropTypes.array,
@@ -84,7 +84,7 @@ class Widgets extends Component {
                 <td className={styles.sprocketsCol}>{widget.sprocketCount}</td>
                 <td className={styles.ownerCol}>{widget.owner}</td>
                 <td className={styles.buttonCol}>
-                  <button className="btn btn-primary" onClick={::this.handleEdit(widget)}>
+                  <button className="btn btn-primary" onClick={this.handleEdit(widget).bind(this)}>
                     <i className="fa fa-pencil"/> Edit
                   </button>
                 </td>
@@ -110,3 +110,4 @@ class Widgets extends Component {
   }
 }
 
+export default Widgets;

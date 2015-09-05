@@ -1,5 +1,4 @@
 import FileStreamRotator from 'file-stream-rotator';
-import fs from 'fs';
 import logger from 'morgan';
 import path from 'path';
 
@@ -19,4 +18,4 @@ export default function loggerMiddleware(app, opts = {}) {
   app.use(logger('combined', {
     stream: accessLogStream
   }));
-};
+}

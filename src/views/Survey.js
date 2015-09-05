@@ -9,7 +9,7 @@ import SurveyForm from '../components/SurveyForm';
   () => ({}),
   dispatch => bindActionCreators({initialize}, dispatch)
 )
-export default class Survey extends Component {
+class Survey extends Component {
   static propTypes = {
     initialize: PropTypes.func.isRequired
   }
@@ -47,7 +47,7 @@ export default class Survey extends Component {
         </p>
 
         <div style={{textAlign: 'center', margin: 15}}>
-          <button className="btn btn-primary" onClick={::this.handleInitialize}>
+          <button className="btn btn-primary" onClick={this.handleInitialize.bind(this)}>
             <i className="fa fa-pencil"/> Initialize Form
           </button>
         </div>
@@ -55,7 +55,7 @@ export default class Survey extends Component {
         <p>The circles to the left of the inputs correspond to flags provided by <code>redux-form</code>:
           Touched, Visited, Active, and Dirty.</p>
 
-        <SurveyForm onSubmit={::this.handleSubmit}/>
+        <SurveyForm onSubmit={this.handleSubmit.bind(this)}/>
       </div>
     );
   }
@@ -74,3 +74,4 @@ export default class Survey extends Component {
   }
 }
 
+export default Survey;

@@ -4,15 +4,16 @@ import FacebookStrategy from 'passport-facebook';
 export default function authRoute(app) {
   console.log('Initializing passport routes!');
 
-  passport.use(new FacebookStrategy({
+  passport.use(new FacebookStrategy(
+    {
       clientID: '778608158855551',
       clientSecret: '03fa4c0d237ceb18908a6e6226d7a1dd',
       callbackURL: '/auth/facebook/callback',
       scope: ['email'],
-      passReqToCallback : true,
+      passReqToCallback: true,
       enableProof: false
     },
-    function (req, accessToken, refreshToken, profile, done) {
+    (req, accessToken, refreshToken, profile, done) => {
       done(null, {user: 'tomas'});
     }
   ));

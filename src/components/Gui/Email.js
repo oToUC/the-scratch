@@ -1,15 +1,13 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import GuiInput from './Input';
 
 export default class GuiEmail extends Component {
-  static listItemClassName = 'field email';  
+  static propTypes = {
+    defaultValue: React.PropTypes.string
+  };
 
   static defaultProps = {
     type: 'email'
-  };
-
-  static propTypes = {
-    defaultValue: React.PropTypes.string
   };
 
   constructor(props) {
@@ -21,4 +19,6 @@ export default class GuiEmail extends Component {
       <GuiInput {...this.props} />
     );
   }
+
+  static listItemClassName = 'field email';
 }

@@ -1,15 +1,13 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import GuiInput from './Input';
 
 export default class GuiBoolean extends Component {
-  static listItemClassName = 'field toggle';
+  static propTypes = {
+    defaultValue: React.PropTypes.bool
+  };
 
   static defaultProps = {
     type: 'checkbox'
-  };
-
-  static propTypes = {
-    defaultValue: React.PropTypes.bool
   };
 
   constructor(props) {
@@ -21,4 +19,6 @@ export default class GuiBoolean extends Component {
       <GuiInput {...this.props} />
     );
   }
+
+  static listItemClassName = 'field toggle';
 }
