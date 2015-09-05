@@ -10,12 +10,16 @@ import ApiClient from './ApiClient';
 import universalRouter from './universalRouter';
 import Html from './Html';
 import PrettyError from 'pretty-error';
+import logger from './api/middleware/logger';
+import path from 'path';
 
 const pretty = new PrettyError();
 const app = new Express();
 const proxy = httpProxy.createProxyServer({
   target: 'http://localhost:' + config.apiPort
 });
+
+logger(app, { path: path.join(__dirname, '..', 'tmp', '/server-%DATE%.log')});
 
 // Initialize middleware
 middleware(app);
