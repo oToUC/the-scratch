@@ -1,22 +1,18 @@
 import express from 'express';
-import session from 'express-session';
-import bodyParser from 'body-parser';
 import config from '../config';
 import * as actions from './routes/index';
 import PrettyError from 'pretty-error';
 
+import middleware from './middleware';
+
 const pretty = new PrettyError();
 const app = express();
-app.use(session({
-  secret: 'react and redux rule!!!!',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 60000 }
-}));
-app.use(bodyParser.json());
+
+middleware(app);
 
 export default function api() {
   return new Promise((resolve) => {
+    // Initialize routes
     app.use((req, res) => {
       const matcher = req.url.split('?')[0].split('/');
       const action = matcher && actions[matcher[1]];

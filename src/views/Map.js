@@ -143,10 +143,7 @@ class Map extends Component {
 
           <GuiSelect
             title="Layer"
-            value={[
-              'czech',
-              'germany'
-            ]}
+            value={'czech'}
           />
 
           <GuiButton

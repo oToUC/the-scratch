@@ -49,8 +49,6 @@ export default class GuiInput extends Component {
     const props = Immutable.fromJS(other).toJS();
     props.className = style.input;
 
-    console.log(props);
-
     var reactElement = element(props, this.props.children);
 
     return (

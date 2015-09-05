@@ -54,7 +54,11 @@ A demonstration of this app can be seen [running on heroku](https://react-redux.
 
 ## Explanation
 
-What initally gets run is `babel.server.js`, which does little more than enable ES6 and ES7 awesomeness in the server-side node code. It then initiates `server.js`. In `server.js` we proxy any requests to `/api/*` to the [API server](#api-server), running at `localhost:3030`. All the data fetching calls from the client go to `/api/*`. Aside from serving the favicon and static content from `/public`, the only thing `server.js` does is initiate delegate rendering to `react-router`. At the bottom of `server.js`, we listen to port `3000` and initiate the API server.
+What initally gets run is `bin/server.js`, which does little more than enable ES6 and ES7 awesomeness in the 
+server-side node code. It then initiates `server.js`. In `server.js` we proxy any requests to `/api/*` to the 
+[API server](#api-server), running at `localhost:3030`. All the data fetching calls from the client go to `/api/*`.
+Aside from serving the favicon and static content from `/static`, the only thing `server.js` does is initiate delegate
+rendering to `react-router`. At the bottom of `server.js`, we listen to port `3000` and initiate the API server.
 
 #### Routing and HTML return
 
@@ -83,7 +87,9 @@ The middleware, [`clientMiddleware.js`](https://github.com/erikras/react-redux-u
 
 #### What the Duck?
 
-[Ducks](https://github.com/erikras/react-redux-universal-hot-example/blob/master/docs/Ducks.md) are a Redux Style Proposal that I came up with to better isolate concerns within a Redux application. I encourage you to read the [Ducks Docs](https://github.com/erikras/react-redux-universal-hot-example/blob/master/docs/Ducks.md) and provide feedback.
+[Ducks](https://github.com/erikras/ducks-modular-redux) are a Redux Style Proposal that I came up with to better 
+isolate concerns within a Redux application. I encourage you to read the
+[Ducks Docs](https://github.com/erikras/ducks-modular-redux) and provide feedback.
 
 #### API Server
 
