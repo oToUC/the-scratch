@@ -1,5 +1,6 @@
 import passport from 'passport';
 import FacebookStrategy from 'passport-facebook';
+import merge from 'node.extend';
 
 export default function authRoute(app) {
   console.log('Initializing passport routes!');
@@ -14,14 +15,24 @@ export default function authRoute(app) {
       enableProof: false
     },
     (req, accessToken, refreshToken, profile, done) => {
-      done(null, {user: 'tomas'});
+      var data = merge(true, {
+        name: profile.displayName,
+        facebook: profile._json
+      }, {
+        facebook: {
+          accessToken: accessToken,
+          refreshToken: refreshToken
+        }
+      });
+
+      done(null, data);
     }
   ));
 
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect: 'http://localhost:3000/',
-      failureRedirect: 'http://localhost:3000/'
+      successRedirect: '/intro',
+      failureRedirect: '/intro'
     })
   );
 
