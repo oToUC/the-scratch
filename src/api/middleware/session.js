@@ -19,6 +19,7 @@ export default function sessionMiddleware(app) {
     secret: 'react and redux rule!!!!',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 60 * 60 * 1000 },
+    rolling: true
   }));
 }

@@ -1,3 +1,5 @@
 export default function loadAuth(req) {
-  return Promise.resolve(req.session.passport.user || req.session.user || null);
+  const passport = req.session.passport || {};
+
+  return Promise.resolve(passport.user || req.session.user || null);
 }
