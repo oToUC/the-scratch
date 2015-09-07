@@ -52,7 +52,7 @@ export default class Gui extends Component {
     const style = require('./Gui.scss');
 
     return (
-      <div className={style.gui + ' menu'} style={{width: this.state.width + 'px'}}ref="gui">
+      <div className={style.gui + ' menu'} style={{width: this.state.width + 'px'}} ref="gui">
         {/* GUI List items */}
         <GuiFolder header={this.props.header}>
           {this.props.children}
