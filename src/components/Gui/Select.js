@@ -7,7 +7,7 @@ export default class GuiSelect extends Component {
   };
 
   static defaultProps = {
-    type: 'radio'
+    type: 'select'
   };
 
   constructor(props) {
@@ -16,7 +16,7 @@ export default class GuiSelect extends Component {
 
   render() {
     return (
-      <GuiInput element="select" {...this.props} />
+      <GuiInput {...this.props} />
     );
   }
 
