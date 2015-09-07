@@ -1,10 +1,12 @@
-.guiInput {
+.input {
   .field {
     float: left;
-    width: 60%
+    width: 60%;
+    line-height: 27px;
+    height: 27px;
   }
 
-  .input {
+  input {
     position: relative;
     color: #1ed36f;
     width: 100%;
@@ -14,16 +16,18 @@
     placeholder: white
   }
 
-  .span {
+  span {
     cursor: default;
     float: left;
     clear: left;
     width: 40%;
     font-family: "Lucida Grande", sans-serif;
-    font-size: 11px
+    font-size: 11px;
+    line-height: 27px;
+    height: 27px;
   }
 
-  .label {
+  label {
     overflow: hidden;
     text-overflow: ellipsis
   }

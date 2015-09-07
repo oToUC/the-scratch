@@ -11,29 +11,43 @@ export default class GuiFolder extends Component {
 
   constructor(props) {
     super(props);
+    
+    this.state = {
+      collapsed: false
+    };
   }
 
   render() {
     const style = require('./Folder.scss');
 
+    const styleCollapsed = this.state.collapsed ? ' ' + style.collapsed : '';
+    
     let header = null;
     if (this.props.header) {
-      header = (<div className={style.li}>
-        <span>{this.props.header}</span>
+      header = (<div className={style.li} onClick={this.onHeaderClick.bind(this)}>
+        <span className={style.header + styleCollapsed}>{this.props.header}</span>
       </div>);
     }
 
     return (
-      <div className={style.folder}>
+      <div className={style.root}>
         {header}
-        <ul className={style.ul}>
+        <ul>
           {React.Children.map(this.props.children, (itemText, index) => {
-            return <li className={itemText.type.listItemClassName + ' ' + style.li} key={index + itemText}>{itemText}</li>;
+            const className = style[itemText.type.listItemClassName] || itemText.type.listItemClassName;
+            return <li className={className + styleCollapsed} key={index + itemText}>{itemText}</li>;
           })}
         </ul>
       </div>
     );
   }
 
+  onHeaderClick(e) 
+  {
+    const state = this.state;
+    state.collapsed = !state.collapsed;
+    this.setState(state);
+  }
+  
   static listItemClassName = 'folder';
 }

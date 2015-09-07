@@ -1,19 +1,38 @@
-.folder {
-  .li {
+.root {
+  li {
     padding-top: 0;
-    padding-right: 4px;
+    padding-right: 0px;
     padding-bottom: 0;
-    padding-left: 5px;
+    padding-left: 10px;
     overflow: hidden;
     line-height: 27px;
     height: 27px;
+    transition: height 0.1s ease-out;
   }
 
-  .ul {
+  ul {
     margin: 0;
     padding: 0;
     clear: both;
     list-style: none;
     width: 100%;
+  }
+
+  .folder {
+    height: auto;
+    line-height: normal;
+  }
+
+  .header {
+    background: black url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 0px 5px no-repeat;
+    margin-left: -10px;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  
+  .collapsed {
+    height: 0px;
+    overflow: hidden;
+    background-image: url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==);
   }
 }

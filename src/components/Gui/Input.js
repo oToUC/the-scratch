@@ -49,14 +49,13 @@ export default class GuiInput extends Component {
     const element = React.createFactory(this.props.element);
 
     const props = Immutable.fromJS(other).toJS();
-    props.className = style.input;
 
     const reactElement = element(props, this.props.children);
 
     return (
-      <div className={style.guiInput}>
-        <span className={style.span}>
-          <label className={style.label}>{title}</label>
+      <div className={style.input}>
+        <span>
+          <label>{title}</label>
         </span>
         <div className={style.field}>
           {reactElement}
