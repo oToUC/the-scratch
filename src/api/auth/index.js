@@ -3,8 +3,6 @@ import FacebookStrategy from 'passport-facebook';
 import merge from 'node.extend';
 
 export default function authRoute(app) {
-  console.log('Initializing passport routes!');
-
   passport.use(new FacebookStrategy(
     {
       clientID: '778608158855551',
