@@ -14,6 +14,19 @@ class Survey extends Component {
     initialize: PropTypes.func.isRequired
   }
 
+  handleSubmit(data) {
+    window.alert('Data submitted! ' + JSON.stringify(data));
+    this.props.initialize('survey', {});
+  }
+
+  handleInitialize() {
+    this.props.initialize('survey', {
+      name: 'Little Bobby Tables',
+      email: 'bobby@gmail.com',
+      occupation: 'Redux Wizard'
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -58,19 +71,6 @@ class Survey extends Component {
         <SurveyForm onSubmit={this.handleSubmit.bind(this)}/>
       </div>
     );
-  }
-
-  handleSubmit(data) {
-    window.alert('Data submitted! ' + JSON.stringify(data));
-    this.props.initialize('survey', {});
-  }
-
-  handleInitialize() {
-    this.props.initialize('survey', {
-      name: 'Little Bobby Tables',
-      email: 'bobby@gmail.com',
-      occupation: 'Redux Wizard'
-    });
   }
 }
 

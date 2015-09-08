@@ -21,11 +21,12 @@ export default class Html extends Component {
 
   render() {
     const {assets, component, store} = this.props;
+    const content = React.renderToString(component);
     return (
       <html lang="en-us">
         <head>
           <meta charSet="utf-8"/>
-          {DocumentMeta.rewind({asReact: true})}
+          {DocumentMeta.renderAsReact()}
 
           <link rel="shortcut icon" href="/favicon.ico" />
           <link type="text/plain" rel="author" href="/humans.txt" />
@@ -49,7 +50,7 @@ export default class Html extends Component {
           <script src="/components/stats.js/build/stats.min.js"></script>
         </head>
         <body>
-          <div id="content" dangerouslySetInnerHTML={{__html: React.renderToString(component)}}/>
+          <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
           <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} />
           <script src={assets.javascript.main}/>
         </body>
