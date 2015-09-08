@@ -3,6 +3,10 @@ import GuiFolder from './Folder';
 
 export default class Gui extends Component {
   static propTypes = {
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.arrayOf(React.PropTypes.node),
+      React.PropTypes.node
+    ]),
     header: React.PropTypes.string
   };
 
@@ -48,6 +52,10 @@ export default class Gui extends Component {
     this.setState(state);
   }
 
+  state = {
+    width: 200
+  };
+
   render() {
     const style = require('./Gui.scss');
 
@@ -65,8 +73,4 @@ export default class Gui extends Component {
       </div>
     );
   }
-
-  state = {
-    width: 200
-  };
 }

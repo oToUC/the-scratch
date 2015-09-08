@@ -14,11 +14,11 @@ export default class GuiEmail extends Component {
     super(props);
   }
 
+  static listItemClassName = 'field email';
+
   render() {
     return (
       <GuiInput {...this.props} />
     );
   }
-
-  static listItemClassName = 'field email';
 }

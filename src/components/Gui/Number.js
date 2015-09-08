@@ -14,11 +14,11 @@ export default class GuiNumber extends Component {
     super(props);
   }
 
+  static listItemClassName = 'field number';
+
   render() {
     return (
       <GuiInput {...this.props} />
     );
   }
-
-  static listItemClassName = 'field number';
 }

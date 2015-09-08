@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 
 export default class GuiFolder extends Component {
   static propTypes = {
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.arrayOf(React.PropTypes.node),
+      React.PropTypes.node
+    ]),
     header: React.PropTypes.string
   };
 
@@ -11,17 +15,25 @@ export default class GuiFolder extends Component {
 
   constructor(props) {
     super(props);
-    
-    this.state = {
-      collapsed: false
-    };
   }
+
+  onHeaderClick() {
+    const state = this.state;
+    state.collapsed = !state.collapsed;
+    this.setState(state);
+  }
+
+  state = {
+    collapsed: false
+  };
+
+  static listItemClassName = 'folder';
 
   render() {
     const style = require('./Folder.scss');
 
     const styleCollapsed = this.state.collapsed ? ' ' + style.collapsed : '';
-    
+
     let header = null;
     if (this.props.header) {
       header = (<div className={style.li} onClick={this.onHeaderClick.bind(this)}>
@@ -41,13 +53,6 @@ export default class GuiFolder extends Component {
       </div>
     );
   }
-
-  onHeaderClick(e) 
-  {
-    const state = this.state;
-    state.collapsed = !state.collapsed;
-    this.setState(state);
-  }
-  
-  static listItemClassName = 'folder';
 }
+
+

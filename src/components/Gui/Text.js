@@ -14,11 +14,11 @@ export default class GuiText extends Component {
     super(props);
   }
 
+  static listItemClassName = 'field text';
+
   render() {
     return (
       <GuiInput {...this.props} />
     );
   }
-
-  static listItemClassName = 'field text';
 }

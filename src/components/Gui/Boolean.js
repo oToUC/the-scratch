@@ -14,11 +14,11 @@ export default class GuiBoolean extends Component {
     super(props);
   }
 
+  static listItemClassName = 'field toggle';
+
   render() {
     return (
       <GuiInput {...this.props} />
     );
   }
-
-  static listItemClassName = 'field toggle';
 }

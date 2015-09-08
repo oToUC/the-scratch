@@ -3,6 +3,10 @@ import Immutable from 'immutable';
 
 export default class GuiInput extends Component {
   static propTypes = {
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.arrayOf(React.PropTypes.node),
+      React.PropTypes.node
+    ]),
     defaultValue: React.PropTypes.oneOfType([
       React.PropTypes.array,
       React.PropTypes.bool,
@@ -42,6 +46,12 @@ export default class GuiInput extends Component {
     super(props);
   }
 
+  static listItemClassName = 'field input';
+
+  state = {
+    value: this.props.defaultValue
+  };
+
   render() {
     const style = require('./Input.scss');
     const { title, ...other } = this.props;
@@ -63,10 +73,4 @@ export default class GuiInput extends Component {
       </div>
     );
   }
-
-  state = {
-    value: this.props.defaultValue
-  };
-
-  static listItemClassName = 'field input';
 }

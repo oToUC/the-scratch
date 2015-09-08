@@ -39,6 +39,73 @@ class Map extends Component {
     // debug;
   }
 
+  createMap() {
+    const mapOptions = {
+      center: this.mapCenterLatLng(),
+      zoom: this.props.initialZoom,
+      mapTypeControlOptions: {
+        mapTypeIds: []
+      },
+      panControl: false,
+      zoomControl: true,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      overviewMapControl: false,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL,
+        position: google.maps.ControlPosition.LEFT_BOTTOM
+      }
+    };
+
+    this.map = new google.maps.Map(React.findDOMNode(this.refs.map), mapOptions);
+    this.marker = new google.maps.Marker({position: this.mapCenterLatLng(), title: 'Hi', map: this.map});
+
+    this.layer = new ThreejsLayer({map: this.map}, (/* layer */) => {
+
+    });
+
+    this.setState({map: this.map});
+
+    const stats = new Stats();
+    stats.setMode(0); // 0: fps, 1: ms
+
+    React.findDOMNode(this.refs.stats).appendChild(stats.domElement);
+
+    this.stats = stats;
+
+    // Start ticking
+    requestAnimationFrame(this.tick.bind(this));
+  }
+
+  mapCenterLatLng() {
+    const props = this.props;
+    return new google.maps.LatLng(props.mapCenterLat, props.mapCenterLng);
+  }
+
+  tick() {
+    // Begin of stats loop
+    this.stats.begin();
+
+    // TODO: Do heavy work here
+
+    // Begin of stats loop
+    this.stats.end();
+
+    requestAnimationFrame(this.tick.bind(this));
+  }
+
+  static styles = {
+    map: {
+      position: 'absolute',
+      height: 'calc(100% - 55px)',
+      width: '100%'
+    },
+    stats: {
+      zIndex: 100
+    }
+  };
+
   render() {
     return (
       <div ref="mapContainer">
@@ -131,73 +198,6 @@ class Map extends Component {
       </div>
     );
   }
-
-  createMap() {
-    const mapOptions = {
-      center: this.mapCenterLatLng(),
-      zoom: this.props.initialZoom,
-      mapTypeControlOptions: {
-        mapTypeIds: []
-      },
-      panControl: false,
-      zoomControl: true,
-      mapTypeControl: false,
-      scaleControl: false,
-      streetViewControl: false,
-      overviewMapControl: false,
-      zoomControlOptions: {
-        style: google.maps.ZoomControlStyle.SMALL,
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-      }
-    };
-
-    this.map = new google.maps.Map(React.findDOMNode(this.refs.map), mapOptions);
-    this.marker = new google.maps.Marker({position: this.mapCenterLatLng(), title: 'Hi', map: this.map});
-
-    this.layer = new ThreejsLayer({map: this.map}, (/* layer */) => {
-
-    });
-
-    this.setState({map: this.map});
-
-    const stats = new Stats();
-    stats.setMode(0); // 0: fps, 1: ms
-
-    React.findDOMNode(this.refs.stats).appendChild(stats.domElement);
-
-    this.stats = stats;
-
-    // Start ticking
-    requestAnimationFrame(this.tick.bind(this));
-  }
-
-  mapCenterLatLng() {
-    const props = this.props;
-    return new google.maps.LatLng(props.mapCenterLat, props.mapCenterLng);
-  }
-
-  tick() {
-    // Begin of stats loop
-    this.stats.begin();
-
-    // TODO: Do heavy work here
-
-    // Begin of stats loop
-    this.stats.end();
-
-    requestAnimationFrame(this.tick.bind(this));
-  }
-
-  static styles = {
-    map: {
-      position: 'absolute',
-      height: 'calc(100% - 55px)',
-      width: '100%'
-    },
-    stats: {
-      zIndex: 100
-    }
-  };
 }
 
 export default Map;

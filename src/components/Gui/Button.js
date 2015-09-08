@@ -14,11 +14,11 @@ export default class GuiButton extends Component {
     super(props);
   }
 
+  static listItemClassName = 'field button';
+
   render() {
     return (
       <GuiInput {...this.props} />
     );
   }
-
-  static listItemClassName = 'field button';
 }
